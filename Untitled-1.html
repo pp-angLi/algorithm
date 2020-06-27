@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  <script>
+    var createPhoneNumber = arr => {
+      let str = `(xxx) xxx-xxxx`;
+      arr.map(value => {
+        str.replace('x', value);
+      })
+      return str;
+    }
+
+    let isValidWalk = arr => {
+      let obj = {
+        'n': 0,
+        's': 0,
+        'w': 0,
+        'e': 0,
+      }
+      arr.map(value => {
+        obj[value]++;
+      })
+      return arr.length === 10 && obj.n === obj.s && obj.w === obj.e;
+    }
+
+    let uniqueInOrder = arr => {
+      return [...arr].filter((value, i) => value !== arr[i - 1])
+    }
+    let validatePIN = str => {
+      return /^\d{4}|\d{6}$/.test(str);
+    }
+    let findNextSquare = num => {
+      return Math.sqrt(num) % 1 === 0 ? Math.pow(Math.sqrt(num) + 1, 2) : -1;
+    }
+    let toCamelCase = str => {
+      if (str === '') {
+        return ``;
+      }
+      return str.replace(/[-_]\w/g, (value) => {
+        return value.charAt(1).toUpperCase();
+      })
+    }
+    let pigIt = str => {
+      return str.replace(/\w*/g, value => {
+        if (value === '') {
+          return ''
+        }
+        return value.slice(1, value.length) + value.charAt(0) + 'ay'
+      })
+    }
+    let moveZeros = arr => {
+      let count = [];
+      let array = []
+      let len = arr.length;
+      for (let i = 0; i < len; i++) {
+        if (arr[i] === 0) {
+          count.push(arr[i]);
+        } else {
+          array.push(arr[i]);
+        }
+      }
+      return [...array, ...count]
+    }
+    let digPow = (n, p) => {
+      let str = n + '';
+      let arr = Array.from(str);
+      let len = arr.length;
+      let count = 0;
+      for (let i = 0; i < len; i++) {
+        count += Math.pow(arr[i], p + i);
+      }
+      let num = count / n;
+      return num % 1 === 0 ? num : -1
+    }
+
+    let queueTime = (customers, n) => {
+      let len = customers.length;
+      let arr = new Array(n).fill(0);
+      for (i of customers) {
+        let min = arr.indexOf(Math.min(...arr));
+        arr[min] += i;
+      }
+      return Math.max(...arr);
+    }
+    let sumStrings = (a, b) => {
+      let len = a.length > b.length ? Math.ceil(a.length / 15) : Math.ceil(b.length / 15);
+      let arr1 = new Array(len).fill(0);
+      let arr2 = new Array(len).fill(0);
+      let str = ``;
+      let t = 0;
+      while (a.length > 15) {
+        arr1[t++] = Number(a.slice(0, 15));
+        a = a.slice(15);
+      }
+      t = 0;
+      while (b.length > 15) {
+        arr2[t++] = Number(b.slice(0, 15));
+        b = b.slice(15);
+      }
+      // let len = arr1.length > arr2.length ? arr1.length : arr2.length;
+      for (let i = 0; i < len; i++) {
+        if (arr1[i] + arr2[i]) {
+
+        }
+      }
+    }
+    let rgb = (r, g, b) => {
+      r = Math.max(0, Math.min(255, r));
+      g = Math.max(0, Math.min(255, g));
+      b = Math.max(0, Math.min(255, b));
+      return r.toString(16).toUpperCase() + g.toString(16).toUpperCase() + b.toString(16).toUpperCase();
+    }
+    let humanReadable = (seconds) => {
+      let s = seconds % 60 > 10 ? seconds % 60 + "" : "0" + seconds % 60;
+      let m = parseInt(seconds / 60) % 60 > 10 ? parseInt(seconds / 60) % 60 + '' : '0' + parseInt(seconds / 60) % 60;
+      let h = parseInt(seconds / 3600) > 10 ? Math.min(99, parseInt(seconds / 3600)) + '' : '0' + parseInt(seconds /
+        3600);
+      return h + ':' + m + ":" + s;
+    }
+
+    let anagrams = (word, arr) => {
+      let len = word.length;
+      let wordArr = Array.from(word).sort().toString();
+      arr = arr.filter(value => {
+        return value.length === len;
+      })
+      let array = [];
+      let arrb = [...arr];
+      for (let i = 0; i < arrb.length; i++) {
+        if (Array.from(arrb[i]).sort().toString() === wordArr) {
+          array.push(arr[i]);
+        }
+      }
+      return array;
+    }
+
+    let rot13 = message => {
+      let arr = message.split('');
+      let array = '';
+      for (let i of arr) {
+        let flag = false;
+        if (/[a-zA-Z]/.test(i)) {
+          if (i.charCodeAt() <= 90) {
+            flag = true;
+          }
+          i = i.charCodeAt() + 13;
+          if (i > 122 && !flag) {
+            i = i - 122 + 96;
+          } else if (i > 90 && flag) {
+            i = i - 90 + 64;
+          }
+          array += String.fromCharCode(i);
+          continue;
+        }
+        array += i;
+      }
+      return array
+    }
+    let incrementString = string => {
+      let number = string.match(/[1-9][0-9]*|0$/);
+      if (number) {
+        number = number[0]
+        let str = string.slice(0, string.length - number.length);
+        number = Number(number) + 1;
+        if (str[str.length - 1] === '0' && number % 10 === 0) {
+          str = str.slice(0, str.length - 1);
+        }
+        return str + `` + number;
+      } else {
+        return string + `1`;
+      }
+    }
+
+    let nextSmaller = n => {
+      let arr = String(n).split("");
+      let max = 0;
+      let max2 = 0;
+      let index = 0;
+      let index2 = 0;
+      let flag = false;
+      for (let i = 0; i < arr.length; i++) {
+        if (!!arr[i + 1] && arr[i + 1] < arr[i]) {
+          max = arr[i];
+          index = i;
+          flag = true
+        }
+      }
+      if (!flag) {
+        return -1;
+      }
+      for (let i = index; i < arr.length; i++) {
+        if (arr[i] < max && arr[i] > max2) {
+          max2 = arr[i];
+          index2 = i;
+        } else if (arr[i] === '0') {
+          if (index === 0) {
+            continue;
+          } else {
+            max2 = arr[i];
+            index2 = i;
+          }
+        }
+      }
+      if (max2 === 0 && index2 === 0) {
+        return -1
+      }
+      [arr[index], arr[index2]] = [arr[index2], arr[index]];
+      let arr3 = arr.splice(index + 1);
+      let arr4 = arr;
+      arr3.sort((a, b) => b - a);
+      let number = Number([...arr4, ...arr3].join(""))
+      return number > n ? -1 : number;
+    }
+    let twoSum = (nums, target) => {
+      let len = nums.length;
+      let dif = 0;
+      let arr = new Map();
+      for (let i = 0; i < len; i++) {
+        dif = target - nums[i];
+        if (arr.has(dif)) {
+          return [arr.get(dif), i];
+        }
+        arr.set(nums[i], i);
+      }
+    }
+    let lengthOfLongestSubstring = (s) => {
+      let arr = s.split("");
+      let len = arr.length
+      let str = ``;
+      let maxStr = ``;
+      for (let i = 0; i < arr.length; i++) {
+        if (str.includes(arr[i])) {
+          maxStr = str.length > maxStr.length ? maxStr = str : maxStr;
+          str = ``;
+        }
+        str += arr[i];
+      }
+      console.log(str, maxStr)
+      return str.length > maxStr.length ? str.length : maxStr.length;
+    }
+    console.log(lengthOfLongestSubstring("dvdf"))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .icon_like {
+      position: relative;
+      top: 20px;
+    }
+
+    .icon_like::before {
+      content: "";
+      width: 20px;
+      height: 12px;
+      background: red;
+      border-radius: 75%;
+      transform: rotate(60deg) translate(-6px);
+      position: absolute;
+    }
+
+    .icon_like::after {
+      content: "";
+      width: 20px;
+      height: 12px;
+      background: red;
+      border-radius: 75%;
+      transform: rotate(120deg) translate(-6px);
+      position: absolute;
+    }
+
+    .icon_ring {
+      background: rosybrown;
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 50%;
+      top: 50px;
+      left: 50px;
+    }
+
+    .icon_ring::after {
+      content: "";
+      width: 60px;
+      height: 60px;
+      border: 5px dashed rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      top: -10px;
+      left: -10px;
+      position: absolute;
+      animation: animation_ring 3s infinite linear;
+    }
+
+    @keyframes animation_ring {
+      from {
+        transform: rotate(0);
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+
+      50% {
+        border-color: rgba(155, 125, 155, 1);
+      }
+
+      to {
+        transform: rotate(360deg);
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .font_color {
+      display: inline-block;
+      color: transparent;
+      position: relative;
+      top: 200px;
+      height: 100px;
+      background-size: 200% 200%;
+      background-image: linear-gradient(to bottom right, rgba(130, 0, 0, 1), rgba(125, 255, 255, 1), rgba(0, 0, 130, 1), rgba(0, 130, 0, 1));
+      -webkit-background-clip: text;
+      animation: color_animation linear 3s infinite alternate;
+    }
+
+    @keyframes color_animation {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 100% 0;
+      }
+    }
+
+    .icon_triangle {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border: 10px solid black;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="icon_like"></div>
+  <div class="icon_ring"></div>
+  <p class="font_color">给我看看字体渐变的效果呗</p>
+  <div class="icon_triangle"></div>
+</body>
+
+</html>
